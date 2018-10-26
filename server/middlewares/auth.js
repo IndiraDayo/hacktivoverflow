@@ -10,10 +10,10 @@ const User = require('../models/user'),
 
 module.exports = {
   authenticate: function(req, res, next) {
-    const validUser = hash.jwtdecode(process.env.TOKEN)
+    const validUser = hash.jwtdecode(req.headers.token)
     console.log('masuk auth');
     
-    if (process.env.TOKEN === undefined || validUser === undefined) {
+    if (req.headers.token === undefined || validUser === undefined) {
       console.log('auth nya error');
       
       res.status(404).json({message: 'Token not valid'})

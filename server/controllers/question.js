@@ -69,6 +69,7 @@ class Controller {
         Question.findOne({
             _id : req.params.id
         })
+            .populate('author')
             .then( question => {
                 res.status(200).json({
                     data: question

@@ -5,6 +5,7 @@ const Comment = require('../models/comment')
 class Controller {
 
     static create(req, res) {
+        
         const comment = new Comment({
             user_comment: req.body.comment,
             description: req.body.description,
@@ -87,9 +88,9 @@ class Controller {
             _id: req.params.id
         })
           .then( question =>{
-              console.log(req.data._id);
-              
-              console.log(question.author_id);
+                console.log(req.data._id);
+                
+                console.log(question.author_id);
               
             if(question.author.toString() === req.data._id){
                 Question.findOneAndUpdate({

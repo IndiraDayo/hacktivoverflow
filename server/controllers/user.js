@@ -35,7 +35,7 @@ module.exports = {
     })
       .then(user => {
         if (hash.bcdecode(password, user.password)) {
-          process.env.TOKEN = hash.jwtencode({
+          let user_token = hash.jwtencode({
             _id: user._id,
             name: user.name,
             email: user.email,
@@ -43,8 +43,8 @@ module.exports = {
           })
           res.status(200).json({
             name: user.name,
-            token: process.env.TOKEN,
-            data: hash.jwtdecode(process.env.TOKEN)
+            token: user_token,
+            data: hash.jwtdecode(user_token)
           })
         }
         else {
